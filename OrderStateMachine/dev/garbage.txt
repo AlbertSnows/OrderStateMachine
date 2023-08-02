@@ -1,0 +1,173 @@
+//		   find_matches
+			   // map<int, transaction_order>(traders.begin(), traders.upper_bound(price));
+
+//auto modify_order_info = dynamic_cast<const modify_order&>(*current_order);
+//auto type = get_order_history(state)[modify_order_info.id].type;
+//if (type == IOC) {
+//	return state;
+//}
+//else {
+//	return process_modify_order(state, modify_order_info);
+//}
+
+//matching_engine add_transaction_order(matching_engine state, transaction_order order) {
+//	state = update_relevant_transactions(state, order, [](auto relevant_transactions, auto order) {
+//		auto price = order.price;
+//		auto key_exists = contains(relevant_transactions, price);
+//		if (!key_exists) {
+//			relevant_transactions.emplace(price, transaction_order{});
+//			cout << "No key: " << price << ". Added to " << order.operation << " orders." << endl;
+//		}
+//		relevant_transactions[price].push_back(order);
+//		return relevant_transactions;
+//		});
+//	return state;
+//}
+
+// proccess trans order
+	//state = add_transaction_order(state, seeker_order);
+
+		//most_relevant_askers.pop_front();
+		//state = update_relevant_transactions(state, most_relevant_asker, [](auto relevant_transactions, auto order) {
+		//    relevant_transactions[order.price].pop_front();
+		//    return relevant_transactions;
+		//    });
+		// auto asking_price = most_relevant_asker.price;
+		//transaction_order relevant_seekers = get_relevant_transactions(state, seeker_operation)[seeker_price];
+		//transaction_order seeker = relevant_seekers.front();
+		//state = update_relevant_transactions(state, seeker, [](auto relevant_transactions, auto order) {
+		//    relevant_transactions[order.price].pop_front();
+		//    return relevant_transactions;
+		//    });
+
+			// update asker
+			//auto should_remove_seeker_price = get_relevant_transactions(state, seeker_operation)[seeker_price].empty();
+			//if (should_remove_seeker_price) {
+			//    state = update_relevant_transactions(state, seeker, [](auto relevant_transactions, auto order) {
+			//        relevant_transactions.erase(order.price);
+			//        return relevant_transactions;
+			//        });
+			//}
+
+
+		//auto should_remove_asker_price =
+		//    (seeker_has_higher_quantity || equal_quantities) && most_relevant_askers.empty();
+		//if (should_remove_asker_price) {
+		//    remaining_relevant_askers.erase(most_relevant_asker.price);
+		//    state = update_relevant_transactions(state, most_relevant_asker, [&most_relevant_asker](auto relevant_transactions, auto order) {
+		//        relevant_transactions.erase(most_relevant_asker.price);
+		//        return relevant_transactions;
+		//        });
+		//}
+
+
+
+	//bool had_askers_and_ran_out = relevant_askers.size() > 0 && remaining_quantity > 0;
+	//if (type != IOC && had_askers_and_ran_out) {
+	//	state = update_relevant_transactions(state, seeker_order, [](auto relevant_transactions, auto order) {
+	//		relevant_transactions[order.price].pop_front();
+	//		return relevant_transactions;
+	//		});
+	//}
+
+	// neither & nor * -> copy of the iterator
+	// & but no * -> literally the same iterator, never should need a reference to a pointer
+	// no & but * -> copy of data at iterator
+	// & and * -> reference to data at iterator, what we want
+
+//template<typename K, typename V, typename F>
+//map<K, V>::const_iterator search_map(map<K, V> search_map, F criteria) {
+//	for (auto it = search_map.cbegin(); it != search_map.cend(); ++it) {
+//		if (criteria(*it)) {
+//			return it;
+//		}
+//	}
+//	return search_map.cend();
+//}
+//template <typename K, typename V, typename F>
+//typename map<K, V>::iterator search(const map<K, V> collection, F criteria) {
+//	auto result = find_if(collection.begin(), collection.end(), criteria);
+//	if (result != collection.end()) {
+//		return result;
+//	}
+//	return collection.end();
+//} 
+
+//state = update_current_seeker(state, higher_quantity_order_pair);
+
+
+
+//filter(traders, [&price](pair<int, transaction_order> trader) {
+//	return     trader.second.price <= price;
+	//});
+
+//filter(traders, [&price](pair<int, transaction_order> trader) {
+//	return trader.second.price >= price;
+//	});
+
+
+//template <typename K, typename V>
+//void assoc(map<K, V>& collection, const K& key, const V& value) {
+//	auto iter = myMap.find(key);
+//	if (iter != myMap.end()) {
+//		iter->second = value;
+//	}
+//	else {
+//		myMap.emplace(key, value);
+//	}
+//}
+
+
+
+	//assoc(relevant_transactions, ?, )
+	//state = update_transactions(state, new_outstander, [](auto relevant_transactions, auto seeker_pair) {
+	//	auto index = static_cast<int>(relevant_transactions.size());
+	//	relevant_transactions[price].emplace(index, order);
+	//	return relevant_transactions;
+	//	});
+
+
+//pair<int, transaction_order> get_transaction(matching_engine state, string operation, int price, int index) {
+//	auto& pair = *get_transactions(state, operation)[price].find(index);
+//	return pair;
+//}
+
+//state = update_transactions(state, order_to_cancel, [&order_position](auto relevant_transactions, auto canceled_order) {
+//	relevant_transactions.erase(order_position);
+//	return relevant_transactions;
+//	})
+
+
+
+//BUY GFD 1000 10 ORDER1
+//BUY GFD 1000 12 ORDER2
+//BUY GFD 1000 14 ORDER3
+//MODIFY ORDER2 SELL 900 3
+//CANCEL ORDER3
+//PRINT
+//TRADE ORDER2 900 3 ORDER1 1000 3
+//SELL:
+//BUY:
+//1000 0
+
+//BUY GFD 1000 10 ORDER1
+//BUY GFD 1000 12 ORDER2
+//BUY GFD 1000 14 ORDER3
+//CANCEL ORDER3
+//MODIFY ORDER2 SELL 900 3
+//PRINT
+//
+//TRADE  900 3 ORDER1 1000 3
+//SELL:
+//BUY:
+//1000 7
+
+BUY GFD 100 10 ORDER1
+BUY GFD 100 12 ORDER2
+BUY GFD 100 14 ORDER3
+BUY GFD 110 10 ORDER4
+BUY GFD 110 12 ORDER5
+BUY GFD 110 14 ORDER6
+BUY GFD 120 12 ORDER7
+BUY GFD 120 10 ORDER8
+BUY GFD 120 14 ORDER9
