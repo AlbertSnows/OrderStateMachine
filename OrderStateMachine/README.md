@@ -7,9 +7,9 @@ The primary file contains todo comments highlighting areas of additional concept
 - The code is not performant (but performance was not the primary goal)
   - How, if at all, could the code be change to improve performance?
   - Will said changes require reverting from functional principles?
-- The state machine could probably be designed better.
-  - Most notably, I suspect queues could have been used somewhere. I actually tried this at first but ran into issues with indexing.
+- The state machine could probably be designed better
+  - Most notably, I suspect queues could have been used somewhere. I actually tried this at first but ran into issues with indexing
 - There are remaining functions that could be refactored considerably.
-  - Most notably, the process transaction order function.
+  - Most notably, the process transaction order function
   
 The code is also not foolproof. There are likely many failing edgecases.
